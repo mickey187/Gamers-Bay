@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "242089427476",
+    "project_id": "gamers-bay-4958c",
+    "storage_bucket": "gamers-bay-4958c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:242089427476:android:4ead6249b09345efd91d01",
+        "android_client_info": {
+          "package_name": "com.progamer.gamersbay"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "242089427476-tjmltvjtj0q1onic6h2vsr47sj80od2d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFn9phD3FkcnIy2qkH2wgdthUDtPiSlOQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "242089427476-tjmltvjtj0q1onic6h2vsr47sj80od2d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

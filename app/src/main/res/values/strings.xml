@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Gamers Bay</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nav_leaderboard">Leaderboard</string>
+    <string name="nav_notifications">Notifications</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_person">Account</string>
+    <string name="nav_settings">Settings</string>
+
+    <string name="label_email">Email</string>
+    <string name="label_password">Password</string>
+    <string name="browse_matches">Browse Matches</string>
+    <string name="matches_available">Matches Available :</string>
+    <string name="call_of_duty_mobile">CALL OF DUTY MOBILE</string>
+    <string name="pubg">PUBG</string>
+    <string name="free_fire">FREE|FIRE</string>
+</resources>
