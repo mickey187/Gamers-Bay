@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -111,7 +113,7 @@ public class SignUpActivity extends AppCompatActivity {
                             FirebaseUser firebaseUser = mAuth.getCurrentUser();
                             userID = firebaseUser.getUid();
 
-                            db.collection("Users").document(userID)
+                          /*  db.collection("Users").document(userID)
                                     .set(user)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
@@ -127,8 +129,11 @@ public class SignUpActivity extends AppCompatActivity {
                                 }
                             });
 
+                           */
+
                             Intent phone = new Intent(getApplicationContext(),PhoneVerification.class);
                             phone.putExtra("phone","+"+phone_number.getText().toString());
+                            phone.putExtra("user data",(Serializable) user);
                             startActivity(phone);
                             Log.d(TAG, "onComplete: "+"+"+phone_number.getText().toString());
                         }

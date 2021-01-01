@@ -5,22 +5,31 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class PhoneVerification extends AppCompatActivity {
 
+    private static final String TAG = "TAG" ;
     EditText otp_1;
     EditText otp_2;
     EditText otp_3;
@@ -40,6 +49,9 @@ public class PhoneVerification extends AppCompatActivity {
 
     String verificationId;
     String phone;
+    private String userID;
+    Map user = new HashMap<>();
+    FirebaseFirestore db;
 
 
     @Override
@@ -58,9 +70,12 @@ public class PhoneVerification extends AppCompatActivity {
         resendOTP = findViewById(R.id.resendOTP);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+
 
         Intent data = getIntent();
         phone = data.getStringExtra("phone");
+        user = (Map)data.getSerializableExtra("user data");
 
         verifyPhone.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,27 +148,61 @@ public class PhoneVerification extends AppCompatActivity {
 
     private void verifyAuthentication(PhoneAuthCredential phoneAuthCredential) {
 
-        firebaseAuth.getCurrentUser().linkWithCredential(phoneAuthCredential).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-            @Override
-            public void onSuccess(AuthResult authResult) {
+        Objects.requireNonNull(firebaseAuth.getCurrentUser()).linkWithCredential(phoneAuthCredential).addOnSuccessListener(authResult -> {
 
-                Toast.makeText(PhoneVerification.this, "Account created", Toast.LENGTH_SHORT).show();
+            Toast.makeText(PhoneVerification.this, "Account created", Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
-            }
+            FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+            userID = firebaseUser.getUid();
+
+            db.collection("Users").document(userID)
+                    .set(user)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d(TAG, "DocumentSnapshot successfully written!");
+                        }
+
+
+                    }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.w(TAG, "Error adding document", e);
+                }
+            });
+
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
         });
 
     }
 
     public void sendOTP(String phoneNumber){
 
-        PhoneAuthProvider.getInstance().verifyPhoneNumber(phoneNumber,60, TimeUnit.SECONDS,this,changedCallbacks);
+        PhoneAuthOptions options =
+                PhoneAuthOptions.newBuilder(firebaseAuth)
+                        .setPhoneNumber(phoneNumber)       // Phone number to verify
+                        .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+                        .setActivity(this)                 // Activity (for callback binding)
+                        .setCallbacks(changedCallbacks)          // OnVerificationStateChangedCallbacks
+                        .build();
+        PhoneAuthProvider.verifyPhoneNumber(options);
+      //  PhoneAuthProvider.getInstance().verifyPhoneNumber(phoneNumber,60, TimeUnit.SECONDS,this,changedCallbacks);
     }
 
     public void resendOTP(String phoneNumber){
 
-        PhoneAuthProvider.getInstance().verifyPhoneNumber(phoneNumber,60, TimeUnit.SECONDS,this,changedCallbacks,token);
+
+        PhoneAuthOptions options =
+                PhoneAuthOptions.newBuilder(firebaseAuth)
+                        .setPhoneNumber(phoneNumber)       // Phone number to verify
+                        .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+                        .setActivity(this)                 // Activity (for callback binding)
+                        .setCallbacks(changedCallbacks)
+                        .setForceResendingToken(token)// OnVerificationStateChangedCallbacks
+                        .build();
+        PhoneAuthProvider.verifyPhoneNumber(options);
+       // PhoneAuthProvider.getInstance().verifyPhoneNumber(phoneNumber,60, TimeUnit.SECONDS,this,changedCallbacks,token);
     }
 
     public void validateField(EditText field){
