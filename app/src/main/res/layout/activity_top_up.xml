@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TopUpActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="#554AE8"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/topup_user_balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15 ETB"
+            android:includeFontPadding="false"
+            android:fontFamily="@font/montserrat"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/topup_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kyle Oubray"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="#FFF"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/montserrat"
+                android:layout_centerInParent="true"/>
+
+            <TextView
+                android:id="@+id/topup_user_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="KyleOubray@gmail.com"
+                android:textSize="16sp"
+                android:textColor="#FFF"
+                android:includeFontPadding="false"
+                android:layout_centerInParent="true"
+                android:layout_below="@+id/topup_user_name" />
+
+
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Top Up your Account"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="5dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <Button
+                        android:id="@+id/topup_cbe"
+                        android:onClick="launchCbeTopUp"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="#554AE8"
+                        android:padding="15dp"
+                        android:text="CBE"
+                        android:textSize="18sp"
+                         />
+
+                    <Button
+                        android:id="@+id/topup_mbirr"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_toRightOf="@+id/topup_cbe"
+                        android:background="#554AE8"
+                        android:padding="15dp"
+                        android:text="M-Birr"
+                        android:textSize="18sp"
+                         />
+
+                    <Button
+                        android:id="@+id/topup_amole"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="#554AE8"
+                        android:padding="15dp"
+                        android:text="Amole"
+                        android:textSize="18sp"
+                        android:layout_below="@+id/topup_cbe"
+                        />
+
+                    <Button
+                        android:id="@+id/topup_hello"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:background="#554AE8"
+                        android:padding="15dp"
+                        android:text="HelloCash"
+                        android:textSize="18sp"
+                        android:layout_below="@id/topup_mbirr"
+                        android:layout_toRightOf="@id/topup_amole"
+                        />
+
+
+
+
+
+
+
+                </RelativeLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

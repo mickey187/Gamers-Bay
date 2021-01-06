@@ -1,5 +1,6 @@
 package com.progamer.gamersbay;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,12 +32,15 @@ public class AccountFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-
+    // Intializiation
+    private Button btn_topup;
 
     TextView username;
     TextView email;
     TextView balance;
     TextView phone_number;
+
+
 
     String userID;
 
@@ -71,6 +76,8 @@ public class AccountFragment extends Fragment {
 //            mParam1 = getArguments().getString(ARG_PARAM1);
 //            mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
     }
 
     @Override
@@ -106,6 +113,27 @@ public class AccountFragment extends Fragment {
 
 
 //        username.setText(currentUsername);
+
+
+        // mannzzy touch
+        btn_topup = view.findViewById(R.id.topup);
+
+        btn_topup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent toTopup = new Intent(view.getContext(), TopUpActivity.class);
+                startActivity(toTopup);
+            }
+        });
+
+
+
+
+
+
         return view;
+
+
+
     }
 }
