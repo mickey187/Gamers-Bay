@@ -5,13 +5,18 @@ public class PubgMatchesModel {
     private String match_description;
     private String game_map;
     private String match_date;
-    private String reward;
+    private int reward;
     private String match_time;
     private String type;
+    private int maximum_number_of_players;
+    private int players_that_joined;
+    private int entrance_fee;
+    private String match_name;
+
 
     private PubgMatchesModel(){};
-    private PubgMatchesModel(String match_description, String game_map, String match_date, String reward, String match_time,
-                             String type){
+    private PubgMatchesModel(String match_description, String game_map, String match_date, int reward, String match_time,
+                             String type, int  players_that_joined, int maximum_number_of_players, int entrance_fee, String match_name ){
 
         this.match_description = match_description;
         this.game_map = game_map;
@@ -20,6 +25,12 @@ public class PubgMatchesModel {
         this.reward = reward;
         this.match_time = match_time;
         this.type = type;
+        this.players_that_joined = players_that_joined;
+        this.maximum_number_of_players = maximum_number_of_players;
+        this.entrance_fee = entrance_fee;
+        this.match_name = match_name;
+
+
     }
 
     public String getMatch_description() {
@@ -46,11 +57,11 @@ public class PubgMatchesModel {
         this.match_date = match_date;
     }
 
-    public String getReward() {
+    public int getReward() {
         return reward;
     }
 
-    public void setReward(String reward) {
+    public void setReward(int reward) {
         this.reward = reward;
     }
 
@@ -68,5 +79,40 @@ public class PubgMatchesModel {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+
+    public int getPlayers_that_joined() {
+        return players_that_joined;
+    }
+
+    public void setPlayers_that_joined(int players_that_joined) {
+        this.players_that_joined = players_that_joined;
+    }
+
+
+    public int getMaximum_number_of_players() {
+        return maximum_number_of_players;
+    }
+
+    public void setMaximum_number_of_players(int maximum_number_of_players) {
+        this.maximum_number_of_players = maximum_number_of_players;
+    }
+
+    public int getEntrance_fee() {
+        return entrance_fee;
+    }
+
+    public void setEntrance_fee(int entrance_fee) {
+        this.entrance_fee = entrance_fee;
+    }
+
+
+    public String getMatch_name() {
+        return match_name;
+    }
+
+    public void setMatch_name(String match_name) {
+        this.match_name = match_name;
     }
 }

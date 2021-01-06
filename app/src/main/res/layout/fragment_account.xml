@@ -78,10 +78,11 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
-                    android:text=""
+                    android:text="  "
+                    android:paddingLeft="5dp"
                     android:textAlignment="textStart"
                     android:textSize="18sp"
-                    />
+                    app:drawableStartCompat="@drawable/ic_baseline_attach_money_24" />
 
                 <TextView
                     android:id="@+id/textview_phone_number"
@@ -93,10 +94,11 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
-                    android:text=""
+                    android:text="  "
+                    android:paddingLeft="5dp"
                     android:textAlignment="textStart"
                     android:textSize="18sp"
-                    />
+                    app:drawableLeftCompat="@drawable/ic_baseline_phone_24" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,12 +5,18 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -28,6 +34,7 @@ public class HomeFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    public static final String TAG = "test";
 
     String url_pubg;
     String url_codm;
@@ -79,6 +86,12 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
 
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference gsReference_pubg = storage.getReferenceFromUrl("gs://gamers-bay-4958c.appspot.com/PUBG_wallpaper.jpg");
+        StorageReference gsReference_freefire = storage.getReferenceFromUrl("gs://gamers-bay-4958c.appspot.com/FREEFIRE_wallpaper.jpg");
+        StorageReference gsReference_codm = storage.getReferenceFromUrl("gs://gamers-bay-4958c.appspot.com/CODM_wallpaper.jpg");
+
+
         pubg_imageview = view.findViewById(R.id.pubg_imageview);
         freefire_imageview = view.findViewById(R.id.freefire_imageview);
         codm_imageview = view.findViewById(R.id.codm_imageview);
@@ -87,27 +100,18 @@ public class HomeFragment extends Fragment {
         browse_freefire_matches = view.findViewById(R.id.browse_freefire_matches);
         browse_codm_matches = view.findViewById(R.id.browse_codm_matches);
 
-        url_pubg = "https://wallpapercave.com/wp/wp2208679.jpg";
-        url_codm = "https://4kwallpapers.com/images/walls/thumbs_3t/784.jpg";
+        url_pubg = "gs://gamers-bay-4958c.appspot.com/PUBG_wallpaper.jpg";
+        url_codm = "gs://gamers-bay-4958c.appspot.com/CODM_wallpaper.jpg";
         url_freefire = "https://wallpapercave.com/wp/wp3144211.jpg";
 
-        Picasso.get()
-                .load(url_pubg)
-                .fit()
-                .centerCrop()
-                .into(pubg_imageview);
 
-        Picasso.get()
-                .load(url_freefire)
-                .fit()
-                .centerCrop()
-                .into(freefire_imageview);
 
-        Picasso.get()
-                .load(url_codm)
-                .fit()
-                .centerCrop()
-                .into(codm_imageview);
+      GlideApp.with(this).load(gsReference_pubg).into(pubg_imageview);
+      GlideApp.with(this).load(gsReference_freefire).into(freefire_imageview);
+      GlideApp.with(this).load(gsReference_codm).into(codm_imageview);
+
+
+
 
         browse_pubg_matches.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -99,8 +99,8 @@ public class AccountFragment extends Fragment {
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
                 username.setText(documentSnapshot.getString("Full name"));
                 email.setText(documentSnapshot.getString("Email"));
-                balance.setText("Balance: "+documentSnapshot.getString("Balance")+" $");
-                phone_number.setText("Phone number: "+documentSnapshot.getString("Phone number"));
+                balance.setText("   Balance: "+String.valueOf(documentSnapshot.getLong("Balance")));
+                phone_number.setText("  "+documentSnapshot.getString("Phone number"));
             }
         });
 

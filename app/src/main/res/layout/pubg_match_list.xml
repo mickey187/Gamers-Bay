@@ -63,6 +63,16 @@
             app:layout_constraintEnd_toEndOf="parent">
 
             <TextView
+                android:id="@+id/match_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:textSize="18sp"
+                />
+
+            <TextView
                 android:id="@+id/match_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -91,6 +101,15 @@
                 android:layout_marginEnd="10dp"
                 android:textSize="18sp"
                 />
+            <TextView
+                android:id="@+id/entrance_fee"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp"
+                android:textSize="18sp"
+                />
 
             <TextView
                 android:id="@+id/match_description"
@@ -100,6 +119,38 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
+                android:textSize="18sp"
+                />
+
+
+            <ProgressBar
+                android:id="@+id/determinateBar"
+                style="@android:style/Widget.Holo.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:backgroundTint="@color/purple_700"
+
+               />
+            
+
+            <TextView
+                android:id="@+id/num_of_players_joined"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:textSize="18sp"
+                android:layout_gravity="end"
+                />
+
+            <Button
+                android:id="@+id/join_match_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="join"
                 android:textSize="18sp"
                 />
 

@@ -35,6 +35,7 @@ public class SignUpActivity extends AppCompatActivity {
     Button signup;
     String balance = "0";
 
+
     private FirebaseAuth mAuth;
     private static final String TAG = "DocSnippets";
     String userID;
