@@ -81,9 +81,9 @@ public class AccountFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_account, container, false);
 
 
-//        username = view.findViewById(R.id.textview_username);
-//        email = view.findViewById(R.id.textview_email);
-//        balance = view.findViewById(R.id.textview_balance);
+        username = view.findViewById(R.id.user_name);
+        email = view.findViewById(R.id.user_email);
+        balance = view.findViewById(R.id.user_balance);
 //        phone_number = view.findViewById(R.id.textview_phone_number);
 
         mAuth = FirebaseAuth.getInstance();
@@ -95,9 +95,9 @@ public class AccountFragment extends Fragment {
         documentReference.addSnapshotListener( new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
-//                username.setText(documentSnapshot.getString("Full name"));
-//                email.setText(documentSnapshot.getString("Email"));
-//                balance.setText("Balance: "+documentSnapshot.getString("Balance")+" $");
+                username.setText(documentSnapshot.getString("Full name"));
+                email.setText(documentSnapshot.getString("Email"));
+                balance.setText(documentSnapshot.getLong("Balance").toString()+" ETB");
 //                phone_number.setText("Phone number: "+documentSnapshot.getString("Phone number"));
             }
         });

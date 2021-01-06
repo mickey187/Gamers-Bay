@@ -97,7 +97,7 @@ public class JoinPubgMatch extends AppCompatActivity {
                 user_details.put("gaming_id", gaming_Id);
                 user_details.put("match_name", match_name);
 
-                firestore.collection("pubg_list").document(full_name)
+                firestore.collection("pubg_list").document(full_name).collection("matches").document(match_name)
                          .set(user_details)
                          .addOnSuccessListener(new OnSuccessListener<Void>() {
                              @Override
