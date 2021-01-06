@@ -30,9 +30,7 @@ public class AccountFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+
 
     TextView username;
     TextView email;
@@ -70,8 +68,8 @@ public class AccountFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+//            mParam1 = getArguments().getString(ARG_PARAM1);
+//            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -83,10 +81,10 @@ public class AccountFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_account, container, false);
 
 
-        username = view.findViewById(R.id.textview_username);
-        email = view.findViewById(R.id.textview_email);
-        balance = view.findViewById(R.id.textview_balance);
-        phone_number = view.findViewById(R.id.textview_phone_number);
+//        username = view.findViewById(R.id.textview_username);
+//        email = view.findViewById(R.id.textview_email);
+//        balance = view.findViewById(R.id.textview_balance);
+//        phone_number = view.findViewById(R.id.textview_phone_number);
 
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
@@ -97,17 +95,17 @@ public class AccountFragment extends Fragment {
         documentReference.addSnapshotListener( new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
-                username.setText(documentSnapshot.getString("Full name"));
-                email.setText(documentSnapshot.getString("Email"));
-                balance.setText("   Balance: "+String.valueOf(documentSnapshot.getLong("Balance")));
-                phone_number.setText("  "+documentSnapshot.getString("Phone number"));
+//                username.setText(documentSnapshot.getString("Full name"));
+//                email.setText(documentSnapshot.getString("Email"));
+//                balance.setText("Balance: "+documentSnapshot.getString("Balance")+" $");
+//                phone_number.setText("Phone number: "+documentSnapshot.getString("Phone number"));
             }
         });
 
-        String currentUsername = user.getEmail();
+//        String currentUsername = user.getEmail();
 
 
-        username.setText(currentUsername);
+//        username.setText(currentUsername);
         return view;
     }
 }
