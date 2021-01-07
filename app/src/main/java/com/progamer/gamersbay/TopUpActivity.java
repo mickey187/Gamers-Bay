@@ -58,7 +58,12 @@ public class TopUpActivity extends AppCompatActivity {
 
 
     public void launchCbeTopUp(View view) {
+        openDialog();
 
+    }
 
+    private void openDialog() {
+        DialogClass dialogClass = new DialogClass();
+        dialogClass.show(getSupportFragmentManager(), "TopUp dialog");
     }
 }

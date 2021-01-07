@@ -20,12 +20,14 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AccountFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class AccountFragment extends Fragment {
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+public class AccountFragment extends Fragment implements DialogClass.DialogClassListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -40,12 +42,17 @@ public class AccountFragment extends Fragment {
     TextView balance;
     TextView phone_number;
 
-
-
     String userID;
 
     FirebaseAuth mAuth;
     FirebaseFirestore firestore;
+
+    // created a new FirebaseAuth, FirebaseFirestore, and FirebaseUser objects. I couldn't access the one created above.
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseAuth mAuthObj= FirebaseAuth.getInstance();
+    FirebaseUser currentUser = mAuthObj.getCurrentUser();
+    String userUid = currentUser.getUid();
+
 
     public AccountFragment() {
         // Required empty public constructor
@@ -84,9 +91,7 @@ public class AccountFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
         View view = inflater.inflate(R.layout.fragment_account, container, false);
-
 
         username = view.findViewById(R.id.user_name);
         email = view.findViewById(R.id.user_email);
@@ -99,6 +104,7 @@ public class AccountFragment extends Fragment {
         userID = user.getUid();
 
         final DocumentReference documentReference = firestore.collection("Users").document(userID);
+
         documentReference.addSnapshotListener( new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
@@ -109,31 +115,51 @@ public class AccountFragment extends Fragment {
             }
         });
 
-//        String currentUsername = user.getEmail();
-
-
-//        username.setText(currentUsername);
-
-
         // mannzzy touch
         btn_topup = view.findViewById(R.id.topup);
 
         btn_topup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent toTopup = new Intent(view.getContext(), TopUpActivity.class);
-                startActivity(toTopup);
+                /*
+                    Decided to use pop up rather than an activity
+                 */
+//                Intent toTopup = new Intent(view.getContext(), TopUpActivity.class);
+//                startActivity(toTopup);
+
+                openDialog();
             }
         });
 
-
-
-
-
-
         return view;
+    }
+
+    private void openDialog() {
+        DialogClass dialogClass = new DialogClass();
+        dialogClass.show(getActivity().getSupportFragmentManager(), "TopUp dialog");
+    }
+
+    @Override
+    public void applyTexts(String phonenum, String amount, String option) {
+
+        String date = new SimpleDateFormat("dd-M-yyyy hh:mm:ss").format(new Date());
+        Map<String,String> mdata = new HashMap<>();
+        mdata.put("paymentOption", option);
+        mdata.put("date", date);
+        mdata.put("phone",phonenum);
+        mdata.put("amount",amount);
+        addtoDb(mdata);
 
 
 
+    }
+
+    public void addtoDb(Map m){
+//        final DocumentReference dr = firestore.collection("Topup").document(userID);
+        String date = new SimpleDateFormat("dd-M-yyyy hh:mm:ss").format(new Date());
+
+
+        db.collection("Topup").document(userUid + "---" + date)
+                .set(m);
     }
 }

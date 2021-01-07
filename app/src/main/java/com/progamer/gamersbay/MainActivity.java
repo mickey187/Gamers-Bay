@@ -12,7 +12,7 @@ import android.widget.FrameLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements DialogClass.DialogClassListener {
 
     private BottomNavigationView bottomNavigationView;
     private FrameLayout frameLayout;
@@ -96,4 +96,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void applyTexts(String phonenum, String amount, String option) {
+        AccountFragment accountFragment = new AccountFragment();
+        accountFragment.applyTexts(phonenum, amount, option);
+    }
 }

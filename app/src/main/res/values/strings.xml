@@ -15,4 +15,11 @@
     <string name="call_of_duty_mobile">CALL OF DUTY MOBILE</string>
     <string name="pubg">PUBG</string>
     <string name="free_fire">FREE|FIRE</string>
+
+    <string-array name="paymentOptions">
+        <item>CBE</item>
+        <item>M-Birr</item>
+        <item>Amole</item>
+        <item>HelloCash</item>
+    </string-array>
 </resources>
