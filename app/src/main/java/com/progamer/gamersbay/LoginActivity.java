@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -27,9 +26,6 @@ public class LoginActivity extends AppCompatActivity {
     TextInputEditText password;
     private FirebaseAuth mAuth;
 
-    // Adding Shared Preference, for recognizing auto login
-    SharedPreferences sp;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,22 +38,11 @@ public class LoginActivity extends AppCompatActivity {
         password = findViewById(R.id.login_password_textField);
         mAuth = FirebaseAuth.getInstance();
 
-        //shared preference object initialization
-        sp = getSharedPreferences("logged_in",MODE_PRIVATE);
-
-        // checks if the user is logged in before, if true let them in with out authenticating.
-        if(sp.getBoolean("isLogged",false)){
-            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
-
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String email_login = email.getText().toString().trim();
                 String password_login = password.getText().toString().trim();
-
                 if (TextUtils.isEmpty(email_login)){
 
                     email.setError("please enter your email address");
@@ -79,9 +64,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
                             Toast.makeText(LoginActivity.this, "Authentication successful", Toast.LENGTH_SHORT).show();
-
-
-                            sp.edit().putBoolean("isLogged",true).apply(); // adds the value of true to islogged key
 
                             Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                             startActivity(intent);

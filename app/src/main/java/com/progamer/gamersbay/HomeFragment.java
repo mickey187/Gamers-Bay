@@ -2,22 +2,16 @@ package com.progamer.gamersbay;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
-import com.google.firebase.iid.FirebaseInstanceId;
+import androidx.fragment.app.Fragment;
+
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.squareup.picasso.NetworkPolicy;
-import com.squareup.picasso.Picasso;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -103,7 +97,6 @@ public class HomeFragment extends Fragment {
         url_pubg = "gs://gamers-bay-4958c.appspot.com/PUBG_wallpaper.jpg";
         url_codm = "gs://gamers-bay-4958c.appspot.com/CODM_wallpaper.jpg";
         url_freefire = "https://wallpapercave.com/wp/wp3144211.jpg";
-
 
 
       GlideApp.with(this).load(gsReference_pubg).into(pubg_imageview);
