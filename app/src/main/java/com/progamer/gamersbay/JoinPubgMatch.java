@@ -23,6 +23,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -45,6 +46,7 @@ public class JoinPubgMatch extends AppCompatActivity {
 
     DocumentReference documentReference;
     DocumentReference documentReference_1;
+    String token_number;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,8 @@ public class JoinPubgMatch extends AppCompatActivity {
         userID = user.getUid();
         Intent data = getIntent();
         match_name = data.getStringExtra("match_name");
+
+
 
          documentReference = firestore.collection("Users").document(userID);
         documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
@@ -89,6 +93,9 @@ public class JoinPubgMatch extends AppCompatActivity {
 
                 in_game_username = in_game_name.getText().toString().toString();
                 gaming_Id = in_game_Id.getText().toString().trim();
+
+                token_number = FirebaseInstanceId.getInstance().getToken();
+
                 Map<String, Object> user_details = new HashMap<>();
 
                 user_details.put("Full name", full_name);
@@ -96,6 +103,7 @@ public class JoinPubgMatch extends AppCompatActivity {
                 user_details.put("in_game_user_name", in_game_username);
                 user_details.put("gaming_id", gaming_Id);
                 user_details.put("match_name", match_name);
+                user_details.put("token",token_number);
 
                 firestore.collection("pubg_list").document(full_name).collection("matches").document(match_name)
                          .set(user_details)
