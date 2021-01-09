@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="ds">
+
+        <attr name="backgroundColorForLayout" format="color"/>
+        <attr name="backgroundTintForCardview" format="color"/>
+        <attr name="navigationBarBackground" format="color"/>
+        <attr name="textColor" format="color"/>
+        <attr name="navIconTintPressed" format="color"/>
+        <attr name="navIconTintNotPressed" format="color"/>
+
+    </declare-styleable>
+</resources>

@@ -33,7 +33,7 @@ public class SignUpActivity extends AppCompatActivity {
     TextInputEditText user_password;
     TextInputEditText phone_number;
     Button signup;
-    String balance = "0";
+    int balance = 0;
 
 
     private FirebaseAuth mAuth;

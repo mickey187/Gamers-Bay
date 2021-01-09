@@ -16,10 +16,29 @@
     <string name="pubg">PUBG</string>
     <string name="free_fire">FREE|FIRE</string>
 
+    <!-- list_pref_entries-->
+    <string name="pref_color_label_red">Red</string>
+    <string name="pref_color_label_blue">Blue</string>
+    <string name="pref_color_label_green">Green</string>
+
+    <!--list_pref_entry_values-->
+    <string name="pref_color_red_value">Red</string>
+    <string name="pref_color_blue_value">Blue</string>
+    <string name="pref_color_green_value">Green</string>
+
+    <!--keys-->
+
+    <string name="preference_category">preference_category</string>
+    <string name="dark_mode">dark_mode</string>
+    <string name="themes">themes</string>
+
+
     <string-array name="paymentOptions">
         <item>CBE</item>
         <item>M-Birr</item>
         <item>Amole</item>
         <item>HelloCash</item>
     </string-array>
+
+
 </resources>

@@ -12,6 +12,35 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="backgroundColorForLayout">@color/white</item>
+        <item name="backgroundTintForCardview">@color/white</item>
+        <item name="navigationBarBackground">@color/white</item>
+        <item name="textColor">@color/purple_700</item>
+        <item name="navIconTintPressed">@color/purple_500</item>
+        <item name="navIconTintNotPressed">@color/colorGray</item>
+    </style>
+
+    <style name="darkTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/colorDarkPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorDarkSecondary</item>
+        <item name="colorOnPrimary">@color/colorDarkThird</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+        <item name="backgroundColorForLayout">@color/colorDarkPrimary</item>
+        <item name="backgroundTintForCardview">@color/colorDarkThird</item>
+        <item name="textColor">@color/white</item>
+        <item name="navigationBarBackground">@color/colorDarkPrimary</item>
+        <item name="navIconTintPressed">@color/white</item>
+        <item name="navIconTintNotPressed">@color/colorGray</item>
+
+
     </style>
 
     <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="Theme.MaterialComponents.Light">

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        android:key="@string/preference_category"
+        android:title="Display">
+
+        <SwitchPreferenceCompat
+            android:key="@string/dark_mode"
+            app:title="Enable night mode"
+            android:defaultValue="@bool/defaultValue"/>
+
+
+
+        <ListPreference
+            app:allowDividerBelow="true"
+            app:allowDividerAbove="true"
+            android:key="@string/themes"
+            android:title="Themes"
+            android:defaultValue="pref_color_red_value"
+            android:entries="@array/pref_color_option_labels"
+            android:entryValues="@array/pref_color_option_values"
+            />
+
+
+    </PreferenceCategory>
+
+
+</PreferenceScreen>

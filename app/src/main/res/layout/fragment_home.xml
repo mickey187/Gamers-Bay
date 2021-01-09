@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".HomeFragment">
+    tools:context=".HomeFragment"
+    android:background="?attr/backgroundColorForLayout">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -21,7 +22,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="10dp"
-            android:elevation="8dp">
+            android:elevation="8dp"
+            android:backgroundTint="?attr/backgroundTintForCardview">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -41,6 +43,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:text="@string/pubg"
+                    android:textColor="?attr/textColor"
                     android:textSize="18sp"
                     android:layout_marginStart="10dp"
                     />
@@ -51,6 +54,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginStart="10dp"
                     android:text="@string/matches_available"
+                    android:textColor="?attr/textColor"
                     android:textSize="16sp"
                     />
 
@@ -59,6 +63,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/browse_matches"
+                    android:textColor="@color/white"
                     android:layout_marginStart="10dp"
                     />
 
@@ -83,7 +88,8 @@
             android:layout_marginTop="15dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="10dp"
-            android:elevation="8dp">
+            android:elevation="8dp"
+            android:backgroundTint="?attr/backgroundTintForCardview">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -103,6 +109,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:text="@string/free_fire"
+                    android:textColor="?attr/textColor"
                     android:textSize="18sp"
                     android:layout_marginStart="10dp"
                     />
@@ -113,6 +120,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginStart="10dp"
                     android:text="@string/matches_available"
+                    android:textColor="?attr/textColor"
                     android:textSize="16sp"
                     />
 
@@ -121,6 +129,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/browse_matches"
+                    android:textColor="@color/white"
                     android:layout_marginStart="10dp"
                     />
 
@@ -145,7 +154,8 @@
             android:layout_marginTop="15dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="10dp"
-            android:elevation="8dp">
+            android:elevation="8dp"
+            android:backgroundTint="?attr/backgroundTintForCardview">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -165,6 +175,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:text="@string/call_of_duty_mobile"
+                    android:textColor="?attr/textColor"
                     android:textSize="18sp"
                     android:layout_marginStart="10dp"
                     />
@@ -175,6 +186,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginStart="10dp"
                     android:text="@string/matches_available"
+                    android:textColor="?attr/textColor"
                     android:textSize="16sp"
                     />
 
@@ -183,6 +195,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/browse_matches"
+                    android:textColor="@color/white"
                     android:layout_marginStart="10dp"
                     />
 
