@@ -2,8 +2,12 @@ package com.progamer.gamersbay;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -33,6 +37,8 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseFirestore firestore;
     String userID;
     String token_number;
+    SharedPreferences sharedPreferences;
+    public static final String MYPREFRENCES = "MyPrefs";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +50,8 @@ public class LoginActivity extends AppCompatActivity {
         email = findViewById(R.id.email_login_textField);
         password = findViewById(R.id.login_password_textField);
         mAuth = FirebaseAuth.getInstance();
+
+        sharedPreferences = getSharedPreferences(MYPREFRENCES, Context.MODE_PRIVATE);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,6 +80,10 @@ public class LoginActivity extends AppCompatActivity {
 
                             Toast.makeText(LoginActivity.this, "Authentication successful", Toast.LENGTH_SHORT).show();
 
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putBoolean(getString(R.string.isLoggedIn),true);
+                            editor.apply();
+
                             Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                             startActivity(intent);
                         }
@@ -92,5 +104,19 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        PreferenceManager.getDefaultSharedPreferences(this);
+        if (sharedPreferences.getBoolean(getString(R.string.isLoggedIn),false)){
+
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+        }
+
+
     }
 }

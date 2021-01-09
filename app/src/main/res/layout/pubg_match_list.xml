@@ -10,7 +10,8 @@
     app:layout_constraintEnd_toEndOf="parent"
     android:layout_marginTop="10dp"
     android:layout_marginStart="10dp"
-    android:layout_marginEnd="10dp">
+    android:layout_marginEnd="10dp"
+    android:backgroundTint="?attr/backgroundTintForCardview">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

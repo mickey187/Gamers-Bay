@@ -1,10 +1,13 @@
 package com.progamer.gamersbay;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,7 +39,7 @@ public class AccountFragment extends Fragment implements DialogClass.DialogClass
 
     // Intializiation
     private Button btn_topup;
-
+    private Button logout;
     TextView username;
     TextView email;
     TextView balance;
@@ -46,6 +49,8 @@ public class AccountFragment extends Fragment implements DialogClass.DialogClass
 
     FirebaseAuth mAuth;
     FirebaseFirestore firestore;
+    SharedPreferences sharedPreferences;
+    public static final String MYPREFRENCES = "MyPrefs";
 
     // created a new FirebaseAuth, FirebaseFirestore, and FirebaseUser objects. I couldn't access the one created above.
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -94,7 +99,9 @@ public class AccountFragment extends Fragment implements DialogClass.DialogClass
         username = view.findViewById(R.id.user_name);
         email = view.findViewById(R.id.user_email);
         balance = view.findViewById(R.id.user_balance);
+        logout = view.findViewById(R.id.logout);
 //        phone_number = view.findViewById(R.id.textview_phone_number);
+
 
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
@@ -126,6 +133,26 @@ public class AccountFragment extends Fragment implements DialogClass.DialogClass
 //                startActivity(toTopup);
 
                 openDialog();
+            }
+        });
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                mAuth.signOut();
+                sharedPreferences = getActivity().getSharedPreferences(MYPREFRENCES, Context.MODE_PRIVATE);
+                PreferenceManager.getDefaultSharedPreferences(getActivity());
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.clear();
+                editor.apply();
+
+                Intent intent = new Intent(getActivity(),LoginActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+
+
+
             }
         });
 

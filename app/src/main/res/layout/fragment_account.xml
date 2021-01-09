@@ -210,6 +210,20 @@
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 />
 
+            <Button
+                android:id="@+id/logout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_logout"
+                android:drawableTint="@color/colorGray"
+                android:drawablePadding="10dp"
+                android:layout_marginStart="3dp"
+                android:text="logout"
+                android:textSize="20sp"
+                android:textAlignment="textStart"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                />
+
 
         </LinearLayout>
 
