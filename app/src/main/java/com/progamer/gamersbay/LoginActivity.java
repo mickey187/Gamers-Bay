@@ -17,6 +17,11 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.iid.FirebaseInstanceId;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -25,6 +30,9 @@ public class LoginActivity extends AppCompatActivity {
     TextInputEditText email;
     TextInputEditText password;
     private FirebaseAuth mAuth;
+    FirebaseFirestore firestore;
+    String userID;
+    String token_number;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +65,11 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()){
 
                             FirebaseUser user = mAuth.getCurrentUser();
+                            userID = user.getUid();
+
+                            token_number = FirebaseInstanceId.getInstance().getToken();
+
+
                             Toast.makeText(LoginActivity.this, "Authentication successful", Toast.LENGTH_SHORT).show();
 
                             Intent intent = new Intent(getApplicationContext(),MainActivity.class);

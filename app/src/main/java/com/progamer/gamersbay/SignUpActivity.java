@@ -21,6 +21,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -39,6 +40,7 @@ public class SignUpActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private static final String TAG = "DocSnippets";
     String userID;
+    String token_number;
 
     FirebaseFirestore db;
     @Override
@@ -99,11 +101,13 @@ public class SignUpActivity extends AppCompatActivity {
                 }
 
 
+
                 final Map<String, Object> user = new HashMap<>();
                 user.put("Full name",fName);
                 user.put("Email",email);
                 user.put("Balance",balance);
                 user.put("Phone number",phone_no);
+
 
                 mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override

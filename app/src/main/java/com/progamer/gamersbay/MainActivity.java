@@ -6,11 +6,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.preference.PreferenceManager;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -25,7 +27,7 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.progamer.gamersbay.db.DbHelper;
 import com.progamer.gamersbay.notification.NotificationsFragment;
 
-public class MainActivity extends AppCompatActivity implements DialogClass.DialogClassListener {
+public class MainActivity extends AppCompatActivity implements DialogClass.DialogClassListener, SharedPreferences.OnSharedPreferenceChangeListener {
     private DbHelper db;
     private BottomNavigationView bottomNavigationView;
     private FrameLayout frameLayout;
@@ -35,10 +37,14 @@ public class MainActivity extends AppCompatActivity implements DialogClass.Dialo
     private SettingsFragment settingsFragment;
     private NotificationsFragment notificationsFragment;
     private LeaderboardFragment leaderboardFragment;
+    private SettingFragment settingFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setUpSharedPreferences();
+
         setContentView(R.layout.activity_main);
 
         Log.d("firebaseGo", "token: "+FirebaseInstanceId.getInstance().getToken());
@@ -51,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements DialogClass.Dialo
         settingsFragment = new SettingsFragment();
         notificationsFragment = new NotificationsFragment();
         leaderboardFragment = new LeaderboardFragment();
+        settingFragment = new SettingFragment();
         db = new DbHelper(this);
         setFragment(homeFragment);
 
@@ -66,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements DialogClass.Dialo
                         setFragment(accountFragment);
                         return true;
                     case R.id.nav_settings:
-                        setFragment(settingsFragment);
+                        setFragment(settingFragment);
                         return true;
                     case R.id.nav_notifications:
                         setFragment(notificationsFragment);
@@ -93,4 +100,35 @@ public class MainActivity extends AppCompatActivity implements DialogClass.Dialo
         accountFragment.applyTexts(phonenum, amount, option);
     }
 
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+
+        if (key.equals(getString(R.string.dark_mode))){
+            loadThemeFromPreference(sharedPreferences);
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+        }
+
+    }
+
+    private void loadThemeFromPreference(SharedPreferences sharedPreferences) {
+
+        if (sharedPreferences.getBoolean(getString(R.string.dark_mode),false)){
+            setTheme(R.style.darkTheme);
+
+        }
+    }
+
+    public void setUpSharedPreferences(){
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        loadThemeFromPreference(sharedPreferences);
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        PreferenceManager.getDefaultSharedPreferences(this);
+    }
 }
