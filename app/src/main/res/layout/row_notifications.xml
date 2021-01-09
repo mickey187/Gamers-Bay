@@ -42,27 +42,19 @@
 
                 <TextView
                     android:id="@+id/id_notification_body"
-                    android:layout_width="227dp"
+                    android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/id_notification_title"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="-24dp"
+                    android:layout_marginStart="42dp"
+                    android:layout_marginTop="-20dp"
                     android:layout_marginEnd="16dp"
                     android:layout_toEndOf="@+id/id_notification_title"
-
                     android:ellipsize="end"
                     android:gravity="center"
                     android:maxLines="5"
                     android:text="Description"
                     android:textColor="#393535"
-                    android:textSize="14dp" />
-
-                <TextView
-                    android:id="@+id/time_program_item_Id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/id_notification_title"
-                    android:text=" Time" />
+                    android:textSize="16dp" />
 
                 <TextView
                     android:id="@+id/id_notification_time"
@@ -70,7 +62,6 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/id_notification_title"
                     android:layout_marginLeft="10dp"
-                    android:layout_toRightOf="@id/time_program_item_Id"
                     android:text="12:00 PM"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 

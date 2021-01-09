@@ -83,8 +83,6 @@ public class AccountFragment extends Fragment implements DialogClass.DialogClass
 //            mParam1 = getArguments().getString(ARG_PARAM1);
 //            mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-
     }
 
     @Override
@@ -110,7 +108,7 @@ public class AccountFragment extends Fragment implements DialogClass.DialogClass
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
                 username.setText(documentSnapshot.getString("Full name"));
                 email.setText(documentSnapshot.getString("Email"));
-                balance.setText(documentSnapshot.getLong("Balance").toString()+" ETB");
+                balance.setText(String.valueOf(documentSnapshot.get("Balance")+" ETB"));
 //                phone_number.setText("Phone number: "+documentSnapshot.getString("Phone number"));
             }
         });
@@ -159,7 +157,6 @@ public class AccountFragment extends Fragment implements DialogClass.DialogClass
         String date = new SimpleDateFormat("dd-M-yyyy hh:mm:ss").format(new Date());
 
 
-        db.collection("Topup").document(userUid + "---" + date)
-                .set(m);
+        db.collection("Topup").document(userUid + "---" + date).set(m);
     }
 }

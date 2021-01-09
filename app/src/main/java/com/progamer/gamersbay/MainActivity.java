@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements DialogClass.Dialo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Log.d("token", "onCreate: "+"token: "+FirebaseInstanceId.getInstance().getToken());
+        Log.d("firebaseGo", "token: "+FirebaseInstanceId.getInstance().getToken());
 
         bottomNavigationView = findViewById(R.id.bottom_nav);
         frameLayout = findViewById(R.id.main_framelayout);
@@ -92,4 +92,5 @@ public class MainActivity extends AppCompatActivity implements DialogClass.Dialo
         AccountFragment accountFragment = new AccountFragment();
         accountFragment.applyTexts(phonenum, amount, option);
     }
+
 }
