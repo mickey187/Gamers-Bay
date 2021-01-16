@@ -14,22 +14,27 @@ import android.util.Log;
 import androidx.core.app.NotificationCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-import com.progamer.gamersbay.notification.MyNotificationManager;
-import com.progamer.gamersbay.notification.SharedPrefManager;
-
-import org.json.JSONObject;
+import com.progamer.gamersbay.notification.NotificationModel;
 
 import java.util.Calendar;
-import java.util.Iterator;
+import java.util.HashMap;
 import java.util.Map;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "Gamers";
     private LocalBroadcastManager broadcaster;
-
+    public static final String TITLE_KEY = "title";
+    public static final String DESCRIPTION_KEY = "description";
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private CollectionReference notificationRef;
+    private FirebaseAuth mAuth;
     @Override
     public void onCreate() {
         broadcaster = LocalBroadcastManager.getInstance(this);
@@ -37,47 +42,32 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         // TODO(developer): Handle FCM messages here.
+        System.out.println("TAG: "+ FirebaseInstanceId.getInstance().getToken());
         Map<String, String> data = remoteMessage.getData();
-        sendNotification(data.get("key1"),data.get("key2"));
         sendNotificationBackground(data.get("key1"),data.get("key2"));
-        Intent intent = new Intent(this, MainActivity.class);
-        sendBroadcast(intent);
+        addNotification(data.get("key1"),data.get("key2"));
 
     }
     @Override
     public void onNewToken(String token) {
         Log.d(TAG, "Refreshed token: " + token);
-        SharedPrefManager sharedPrefManager = new SharedPrefManager(getApplicationContext());
-        sharedPrefManager.storeToken(token);
-    }
-
-
-    private void sendNotification(String body, String title) {
-        int hour,minute;
-        String time = "";
-        hour = Calendar.getInstance().getTime().getHours();
-        minute = Calendar.getInstance().getTime().getMinutes();
-        if (hour > 12){
-            time = hour +":"+ minute+" PM";
-        }else
-            time = hour +":"+ minute+" AM";
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("notification1", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("SHARED_PREF_NAME",Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        int count = sharedPreferences.getInt("count", 0);
-
-        if (count == 1){
-            editor.putString("title2", title);
-            editor.putString("body2", body);
-            editor.putString("time2", time);
-            editor.putInt("count", 2);
-        }else{
-            editor.putString("title", title);
-            editor.putString("body", body);
-            editor.putString("time", time);
-            editor.putInt("count", 1);
-        }
+        editor.putString("TOKEN", token);
         editor.apply();
     }
+
+    public void addNotification(String title, String description){
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        String userID = user.getUid();
+        notificationRef = db.collection("NotificationTest");
+            NotificationModel notification = new NotificationModel(title, description);
+            notification.setNotificationId(userID);
+            notification.setNotificationTimeStamp(Calendar.getInstance().getTime().toGMTString());
+            notificationRef.document(userID).collection("notification").add(notification);
+    }
+
     private void sendNotificationBackground(String messageBody, String title) {
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
