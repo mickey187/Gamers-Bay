@@ -14,9 +14,12 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="colorGray">#757575</color>
+    <color name="grayLighter">#F3F2F2</color>
     <color name="colorRed">#FF0000</color>
+    <color name="pink">#FF5722</color>
     <color name="colorGreen">#008000</color>
     <color name="colorBlue">#0000FF</color>
+    <color name="sky">#1593F8</color>
 
     <color name="colorDarkPrimary">#15202B</color>
     <color name="colorDarkSecondary">#192734</color>

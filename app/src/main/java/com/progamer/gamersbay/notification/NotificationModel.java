@@ -7,6 +7,8 @@ public class NotificationModel {
     private String description;
     private String notificationId;
     private String notificationTimeStamp;
+    private boolean isNotify;
+
     public NotificationModel() {
         //public no-arg constructor needed
     }
@@ -38,5 +40,13 @@ public class NotificationModel {
 
     public void setNotificationTimeStamp(String notificationTimeStamp) {
         this.notificationTimeStamp = notificationTimeStamp;
+    }
+
+    public boolean isNotify() {
+        return isNotify;
+    }
+
+    public void setNotify(boolean notify) {
+        isNotify = notify;
     }
 }

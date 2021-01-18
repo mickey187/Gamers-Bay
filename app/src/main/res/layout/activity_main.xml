@@ -41,6 +41,7 @@
         app:menu="@menu/nav_items"
         android:background="?attr/navigationBarBackground">
 
+
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

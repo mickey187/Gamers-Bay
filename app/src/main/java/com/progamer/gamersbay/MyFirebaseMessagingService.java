@@ -14,6 +14,7 @@ import android.util.Log;
 import androidx.core.app.NotificationCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -65,6 +66,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             NotificationModel notification = new NotificationModel(title, description);
             notification.setNotificationId(userID);
             notification.setNotificationTimeStamp(Calendar.getInstance().getTime().toGMTString());
+            notification.setNotify(false);
             notificationRef.document(userID).collection("notification").add(notification);
     }
 

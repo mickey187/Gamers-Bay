@@ -9,6 +9,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/notification_recyclerview_id"
+        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layoutAnimation="@anim/layout_fall_down"
@@ -17,5 +18,19 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/row_notifications" />
 
+    <TextView
+        android:id="@+id/emptyText"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="middle"
+        android:text="Notification will appear here in real time."
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="115dp"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
