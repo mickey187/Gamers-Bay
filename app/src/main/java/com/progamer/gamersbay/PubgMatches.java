@@ -4,10 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -124,6 +127,7 @@ public class PubgMatches extends AppCompatActivity {
                 holder.entrance_fee.setText(String.valueOf(model.getEntrance_fee())+" ETB");
                 holder.match_number.setText(model.getMatch_name());
 
+
             }
 
 
@@ -134,6 +138,9 @@ public class PubgMatches extends AppCompatActivity {
         pubg_match_list_firestore.setAdapter(adapter);
 
     }
+
+
+
 
     private class PubgViewHolder extends RecyclerView.ViewHolder {
 
@@ -148,6 +155,8 @@ public class PubgMatches extends AppCompatActivity {
         private ProgressBar player_counter;
         private TextView entrance_fee;
         private TextView match_number;
+        CardView cardView;
+
 
         public PubgViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -163,7 +172,15 @@ public class PubgMatches extends AppCompatActivity {
             num_of_players_joined = itemView.findViewById(R.id.num_of_players_joined);
             entrance_fee = itemView.findViewById(R.id.entrance_fee);
             match_number = itemView.findViewById(R.id.match_number);
+            cardView = itemView.findViewById(R.id.cardview_recycler);
+
+            
+
         }
+
+
+
+
     }
 
     public void checkBalance(){

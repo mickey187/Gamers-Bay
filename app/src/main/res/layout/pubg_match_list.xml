@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <androidx.cardview.widget.CardView
+    android:id="@+id/cardview_recycler"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -24,7 +25,8 @@
             android:orientation="horizontal"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="?attr/backgroundColorForLayout">
 
             <TextView
                 android:id="@+id/match_type_textview"
@@ -74,6 +76,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:textSize="18sp"
+                android:textColor="?attr/textColor"
                 />
 
             <View
@@ -102,6 +105,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:textSize="18sp"
+                        android:textColor="?attr/textColor"
                         />
 
                     <TextView
@@ -112,6 +116,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:textSize="18sp"
+                        android:textColor="?attr/textColor"
                         />
 
                 </LinearLayout>
@@ -135,6 +140,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
+                        android:textColor="?attr/textColor"
                         />
 
                     <TextView
@@ -145,6 +151,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:textSize="18sp"
+                        android:textColor="?attr/textColor"
                         />
 
                 </LinearLayout>
@@ -169,6 +176,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
+                        android:textColor="?attr/textColor"
                         />
 
                     <TextView
@@ -179,6 +187,7 @@
                         android:layout_marginEnd="10dp"
                         android:layout_marginTop="10dp"
                         android:textSize="18sp"
+                        android:textColor="?attr/textColor"
                         />
 
                 </LinearLayout>
@@ -211,6 +220,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:textSize="18sp"
+                android:textColor="?attr/textColor"
                 />
 
 
@@ -234,6 +244,7 @@
                 android:layout_marginEnd="10dp"
                 android:textSize="18sp"
                 android:layout_gravity="end"
+                android:textColor="?attr/textColor"
                 />
 
             <Button
@@ -242,6 +253,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:text="join"
+                android:textColor="@color/white"
                 android:textSize="18sp"
                 />
 

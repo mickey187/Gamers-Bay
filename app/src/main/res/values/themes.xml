@@ -12,12 +12,15 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="cardBackgroundColor">@color/white</item>
         <item name="backgroundColorForLayout">@color/white</item>
         <item name="backgroundTintForCardview">@color/white</item>
         <item name="navigationBarBackground">@color/white</item>
         <item name="textColor">@color/purple_700</item>
         <item name="navIconTintPressed">@color/purple_500</item>
         <item name="navIconTintNotPressed">@color/colorGray</item>
+
+
     </style>
 
     <style name="darkTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
@@ -33,12 +36,15 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="cardBackgroundColor">@color/colorDarkThird</item>
         <item name="backgroundColorForLayout">@color/colorDarkPrimary</item>
         <item name="backgroundTintForCardview">@color/colorDarkThird</item>
         <item name="textColor">@color/white</item>
         <item name="navigationBarBackground">@color/colorDarkPrimary</item>
         <item name="navIconTintPressed">@color/white</item>
         <item name="navIconTintNotPressed">@color/colorGray</item>
+
+
 
 
     </style>

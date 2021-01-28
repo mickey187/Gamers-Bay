@@ -4,11 +4,22 @@
     <declare-styleable name="ds">
 
         <attr name="backgroundColorForLayout" format="color"/>
-        <attr name="backgroundTintForCardview" format="color"/>
+        <attr name="backgroundTintForCardview" format="color|reference"/>
+        <attr name="cardBackgroundColor" format="color"/>
         <attr name="navigationBarBackground" format="color"/>
         <attr name="textColor" format="color"/>
         <attr name="navIconTintPressed" format="color"/>
         <attr name="navIconTintNotPressed" format="color"/>
+        <attr name="android:background" format="color|reference"/>
+        <attr name="cardStyle" format="reference"/>
 
     </declare-styleable>
+
+    <style name="Light" parent="Theme.AppCompat.NoActionBar">
+        <item name="cardStyle">@style/CardView.Light</item>
+    </style>
+
+    <style name="Dark" parent="Theme.AppCompat.NoActionBar">
+        <item name="cardStyle">@style/CardView.Dark</item>
+    </style>
 </resources>

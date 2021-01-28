@@ -2,22 +2,22 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
-        android:key="@string/preference_category"
+        android:key="@string/preference_category_display"
         android:title="Display">
 
         <SwitchPreferenceCompat
             android:key="@string/dark_mode"
+            android:icon="@drawable/ic_baseline_dark_mode_24"
             app:title="Enable night mode"
-            android:defaultValue="@bool/defaultValue"/>
+            android:defaultValue="@bool/defaultValueFalse"/>
 
 
 
         <ListPreference
-            app:allowDividerBelow="true"
-            app:allowDividerAbove="true"
             android:key="@string/themes"
             android:title="Themes"
             android:defaultValue="pref_color_red_value"
@@ -28,5 +28,20 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory
+        android:key="@string/preference_category_notifications"
+        android:title="Notifications">
+
+        <SwitchPreferenceCompat
+            android:key="@string/turn_on_notifications"
+            android:title="Turn on notifications"
+            android:defaultValue="@bool/defaultValueTrue"
+            android:icon="@drawable/ic_baseline_notifications_24"
+            />
+
+
+
+
+    </PreferenceCategory>
 
 </PreferenceScreen>

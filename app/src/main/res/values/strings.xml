@@ -28,9 +28,13 @@
 
     <!--keys-->
 
-    <string name="preference_category">preference_category</string>
+    <string name="preference_category_display">preference_category_display</string>
     <string name="dark_mode">dark_mode</string>
     <string name="themes">themes</string>
+    <string name="isLoggedIn">isLoggedIn</string>
+
+    <string name="preference_category_notifications">preference_category_notifications</string>
+    <string name="turn_on_notifications">notifications</string>
 
 
     <string-array name="paymentOptions">

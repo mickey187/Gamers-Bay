@@ -104,14 +104,14 @@ public class MainActivity extends AppCompatActivity implements DialogClass.Dialo
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 
         if (key.equals(getString(R.string.dark_mode))){
-            loadThemeFromPreference(sharedPreferences);
+            loadDarkModeFromPreference(sharedPreferences);
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
         }
 
     }
 
-    private void loadThemeFromPreference(SharedPreferences sharedPreferences) {
+    private void loadDarkModeFromPreference(SharedPreferences sharedPreferences) {
 
         if (sharedPreferences.getBoolean(getString(R.string.dark_mode),false)){
             setTheme(R.style.darkTheme);
@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements DialogClass.Dialo
 
     public void setUpSharedPreferences(){
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        loadThemeFromPreference(sharedPreferences);
+        loadDarkModeFromPreference(sharedPreferences);
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
     }
 

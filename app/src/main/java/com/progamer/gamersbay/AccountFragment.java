@@ -115,7 +115,7 @@ public class AccountFragment extends Fragment implements DialogClass.DialogClass
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
                 username.setText(documentSnapshot.getString("Full name"));
                 email.setText(documentSnapshot.getString("Email"));
-                balance.setText(String.valueOf(documentSnapshot.get("Balance")+" ETB"));
+                balance.setText(String.valueOf(documentSnapshot.getLong("Balance")) + " ETB");
 //                phone_number.setText("Phone number: "+documentSnapshot.getString("Phone number"));
             }
         });
