@@ -15,10 +15,12 @@
         <item name="cardBackgroundColor">@color/white</item>
         <item name="backgroundColorForLayout">@color/white</item>
         <item name="backgroundTintForCardview">@color/white</item>
+        <item name="backgroundTintForCardview2">@color/colorPurple</item>
         <item name="navigationBarBackground">@color/white</item>
         <item name="textColor">@color/purple_700</item>
         <item name="navIconTintPressed">@color/purple_500</item>
         <item name="navIconTintNotPressed">@color/colorGray</item>
+        <item name="backgroundColorForRelativeLayout">@color/colorPurple</item>
 
 
     </style>
@@ -39,12 +41,13 @@
         <item name="cardBackgroundColor">@color/colorDarkThird</item>
         <item name="backgroundColorForLayout">@color/colorDarkPrimary</item>
         <item name="backgroundTintForCardview">@color/colorDarkThird</item>
+        <item name="backgroundTintForCardview2">@color/colorDarkThird</item>
         <item name="textColor">@color/white</item>
         <item name="navigationBarBackground">@color/colorDarkPrimary</item>
         <item name="navIconTintPressed">@color/white</item>
         <item name="navIconTintNotPressed">@color/colorGray</item>
 
-
+        <item name="backgroundColorForRelativeLayout">@color/colorDarkSecondary</item>
 
 
     </style>
@@ -52,4 +55,13 @@
     <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="Theme.MaterialComponents.Light">
         <item name="cornerSize">50%</item>
     </style>
+
+    <style name="Theme.GamersBay.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.GamersBay.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.GamersBay.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

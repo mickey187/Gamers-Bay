@@ -1,12 +1,15 @@
 package com.progamer.gamersbay;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +26,11 @@ public class LeaderboardFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    CardView pubg_leaderboard;
+    CardView freefire_leaderboard;
+    CardView codm_leaderboard;
+
 
     public LeaderboardFragment() {
         // Required empty public constructor
@@ -59,6 +67,21 @@ public class LeaderboardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_leaderboard, container, false);
+        View view = inflater.inflate(R.layout.fragment_leaderboard, container, false);
+
+        pubg_leaderboard = view.findViewById(R.id.pubg_leaderboard_card);
+        freefire_leaderboard = view.findViewById(R.id.freefire_leaderboard_card);
+        codm_leaderboard = view.findViewById(R.id.codm_leaderboard_card);
+
+        pubg_leaderboard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),PubgLeaderBoard.class);
+                startActivity(intent);
+            }
+        });
+
+
+        return view;
     }
 }

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginEnd="10dp"
+    android:backgroundTint="?attr/backgroundTintForCardview">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/pubg_rank_textview"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:textSize="32sp"
+            android:text=""
+            android:drawableTint="@color/purple_700"
+            android:textColor="?attr/textColor"
+            android:padding="45dp"
+            android:textAlignment="center"
+            android:fontFamily="@font/montserrat"
+
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/pubg_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="?attr/textColor"
+                android:fontFamily="@font/montserrat"
+                android:textSize="18sp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                />
+
+            <TextView
+                android:id="@+id/number_of_games"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="?attr/textColor"
+                android:fontFamily="@font/montserrat"
+                android:textSize="18sp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                />
+
+            <TextView
+                android:id="@+id/number_of_wins"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="?attr/textColor"
+                android:fontFamily="@font/montserrat"
+                android:textSize="18sp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                />
+
+            <TextView
+                android:id="@+id/number_of_kills"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="?attr/textColor"
+                android:fontFamily="@font/montserrat"
+
+                android:textSize="18sp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                />
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+
+
+
+</androidx.cardview.widget.CardView>

@@ -82,7 +82,7 @@ public class PubgMatches extends AppCompatActivity {
 
 
         Query query = firestore.collection("pubg_matches");
-        FirestoreRecyclerOptions<PubgMatchesModel> options =new FirestoreRecyclerOptions.Builder<PubgMatchesModel>()
+        FirestoreRecyclerOptions<PubgMatchesModel> options = new FirestoreRecyclerOptions.Builder<PubgMatchesModel>()
                 .setQuery(query, PubgMatchesModel.class)
                 .build();
 

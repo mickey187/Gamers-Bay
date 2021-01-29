@@ -5,6 +5,7 @@
 
         <attr name="backgroundColorForLayout" format="color"/>
         <attr name="backgroundTintForCardview" format="color|reference"/>
+        <attr name="backgroundTintForCardview2" format="color|reference"/>
         <attr name="cardBackgroundColor" format="color"/>
         <attr name="navigationBarBackground" format="color"/>
         <attr name="textColor" format="color"/>
@@ -12,6 +13,7 @@
         <attr name="navIconTintNotPressed" format="color"/>
         <attr name="android:background" format="color|reference"/>
         <attr name="cardStyle" format="reference"/>
+        <attr name="backgroundColorForRelativeLayout" format="color"/>
 
     </declare-styleable>
 
