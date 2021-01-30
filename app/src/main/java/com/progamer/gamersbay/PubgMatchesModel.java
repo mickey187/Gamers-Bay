@@ -12,11 +12,12 @@ public class PubgMatchesModel {
     private int players_that_joined;
     private int entrance_fee;
     private String match_name;
+    private String match_status;
 
 
     private PubgMatchesModel(){};
     private PubgMatchesModel(String match_description, String game_map, String match_date, int reward, String match_time,
-                             String type, int  players_that_joined, int maximum_number_of_players, int entrance_fee, String match_name ){
+                             String type, int  players_that_joined, int maximum_number_of_players, int entrance_fee, String match_name, String match_status ){
 
         this.match_description = match_description;
         this.game_map = game_map;
@@ -29,8 +30,18 @@ public class PubgMatchesModel {
         this.maximum_number_of_players = maximum_number_of_players;
         this.entrance_fee = entrance_fee;
         this.match_name = match_name;
+        this.match_status = match_status;
 
 
+
+    }
+
+    public String getMatch_status() {
+        return match_status;
+    }
+
+    public void setMatch_status(String match_status) {
+        this.match_status = match_status;
     }
 
     public String getMatch_description() {

@@ -46,6 +46,7 @@ public class JoinPubgMatch extends AppCompatActivity {
 
     DocumentReference documentReference;
     DocumentReference documentReference_1;
+    DocumentReference documentReference_3;
     String token_number;
 
     @Override
@@ -91,40 +92,76 @@ public class JoinPubgMatch extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                in_game_username = in_game_name.getText().toString().toString();
-                gaming_Id = in_game_Id.getText().toString().trim();
 
-                token_number = FirebaseInstanceId.getInstance().getToken();
 
-                Map<String, Object> user_details = new HashMap<>();
-
-                user_details.put("Full name", full_name);
-                user_details.put("Phone number", phone_number);
-                user_details.put("in_game_user_name", in_game_username);
-                user_details.put("gaming_id", gaming_Id);
-                user_details.put("match_name", match_name);
-                user_details.put("token",token_number);
-
-                firestore.collection("pubg_list").document(full_name).collection("matches").document(match_name)
-                         .set(user_details)
-                         .addOnSuccessListener(new OnSuccessListener<Void>() {
-                             @Override
-                             public void onSuccess(Void aVoid) {
-
-                                 firestore.collection("pubg_matches").document(match_name)
-                                          .update(
-                                                  "players_that_joined", FieldValue.increment(1)
-                                 );
-
-                                 firestore.collection("Users").document(userID).update("Balance",FieldValue.increment(-entry_fee));
-                                 Toast.makeText(JoinPubgMatch.this, "submitted successfully", Toast.LENGTH_SHORT).show();
-                             }
-                         }).addOnFailureListener(new OnFailureListener() {
+                documentReference_3 = firestore.collection("pubg_matches").document(match_name);
+                documentReference_3.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(JoinPubgMatch.this, "failed to submit", Toast.LENGTH_SHORT).show();
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()){
+
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()){
+                                Toast.makeText(JoinPubgMatch.this, "you are already registered for this match", Toast.LENGTH_SHORT).show();
+                            }
+
+                            else {
+
+                                in_game_username = in_game_name.getText().toString().toString();
+                                gaming_Id = in_game_Id.getText().toString().trim();
+
+                                token_number = FirebaseInstanceId.getInstance().getToken();
+
+                                Map<String, Object> user_details = new HashMap<>();
+
+                                user_details.put("Full name", full_name);
+                                user_details.put("Phone number", phone_number);
+                                user_details.put("in_game_user_name", in_game_username);
+                                user_details.put("gaming_id", gaming_Id);
+                                user_details.put("match_name", match_name);
+                                user_details.put("token",token_number);
+
+                                firestore.collection("pubg_list").document(full_name).collection("matches").document(match_name)
+                                        .set(user_details)
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+
+                                                firestore.collection("pubg_matches").document(match_name)
+                                                        .update(
+                                                                "players_that_joined", FieldValue.increment(1)
+                                                        );
+
+                                                firestore.collection("Users").document(userID).update("Balance",FieldValue.increment(-entry_fee));
+                                                Toast.makeText(JoinPubgMatch.this, "submitted successfully", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(JoinPubgMatch.this, "failed to submit", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+
+                            }
+                        }
+
+                        else {
+
+                            Toast.makeText(JoinPubgMatch.this, "Failed", Toast.LENGTH_SHORT).show();
+                        }
+
+
                     }
                 });
+
+
+
+
+
+
+
+
+
 
             }
         });

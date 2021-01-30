@@ -2,9 +2,11 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginStart="10dp"
     android:layout_marginTop="10dp"
     android:layout_marginEnd="10dp"
+    android:id="@+id/pubg_leaderboard_cards"
     android:backgroundTint="?attr/backgroundTintForCardview">
 
     <LinearLayout
@@ -12,21 +14,38 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/pubg_rank_textview"
+        <androidx.cardview.widget.CardView
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:textSize="32sp"
-            android:text=""
-            android:drawableTint="@color/purple_700"
-            android:textColor="?attr/textColor"
-            android:padding="45dp"
-            android:textAlignment="center"
-            android:fontFamily="@font/montserrat"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="?attr/backgroundTintForCardview2">
 
-            />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:id="@+id/pubg_rank_textview"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:textSize="32sp"
+                    android:text=""
+                    android:textColor="?attr/textColor"
+                    android:textAlignment="center"
+                    android:fontFamily="@font/montserrat"
+
+                    />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
 
         <LinearLayout
             android:layout_width="match_parent"

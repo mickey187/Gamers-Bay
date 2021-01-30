@@ -79,6 +79,18 @@
                 android:textColor="?attr/textColor"
                 />
 
+            <TextView
+                android:id="@+id/match_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:textSize="18sp"
+                android:textColor="?attr/textColor"
+                />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"

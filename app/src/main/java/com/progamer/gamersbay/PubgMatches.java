@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -39,7 +40,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Map;
 
-public class PubgMatches extends AppCompatActivity {
+public class PubgMatches extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     private static final String TAG = "TAG" ;
     private FirebaseFirestore firestore;
@@ -58,6 +59,8 @@ public class PubgMatches extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setUpSharedPreferences();
         setContentView(R.layout.activity_pubg_matches);
 
         pubg_match_list_firestore = findViewById(R.id.pubg_match_list_recycler);
@@ -105,6 +108,7 @@ public class PubgMatches extends AppCompatActivity {
                 holder.reward.setText(String.valueOf(model.getReward())+" ETB");
                 holder.match_time.setText(model.getMatch_time());
                 holder.type.setText("Type: "+model.getType());
+                holder.match_status.setText("Match status: "+model.getMatch_status());
                 entry_fee =   model.getEntrance_fee();
                 holder.join_match.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -141,7 +145,6 @@ public class PubgMatches extends AppCompatActivity {
 
 
 
-
     private class PubgViewHolder extends RecyclerView.ViewHolder {
 
         private TextView match_description;
@@ -155,6 +158,7 @@ public class PubgMatches extends AppCompatActivity {
         private ProgressBar player_counter;
         private TextView entrance_fee;
         private TextView match_number;
+        private TextView match_status;
         CardView cardView;
 
 
@@ -172,6 +176,7 @@ public class PubgMatches extends AppCompatActivity {
             num_of_players_joined = itemView.findViewById(R.id.num_of_players_joined);
             entrance_fee = itemView.findViewById(R.id.entrance_fee);
             match_number = itemView.findViewById(R.id.match_number);
+            match_status = itemView.findViewById(R.id.match_status);
             cardView = itemView.findViewById(R.id.cardview_recycler);
 
             
@@ -202,6 +207,30 @@ public class PubgMatches extends AppCompatActivity {
 
     }
 
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (key.equals(getString(R.string.dark_mode))){
+            loadDarkModeFromPreference(sharedPreferences);
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    private void loadDarkModeFromPreference(SharedPreferences sharedPreferences) {
+
+        if (sharedPreferences.getBoolean(getString(R.string.dark_mode),false)){
+            setTheme(R.style.darkTheme);
+
+        }
+    }
+
+    public void setUpSharedPreferences(){
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        loadDarkModeFromPreference(sharedPreferences);
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
+    }
+
     @Override
     protected void onStop() {
         super.onStop();
@@ -214,5 +243,12 @@ public class PubgMatches extends AppCompatActivity {
         super.onStart();
 
         adapter.startListening();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        PreferenceManager.getDefaultSharedPreferences(this);
     }
 }
