@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/holder_id"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="10dp"
+    android:outlineSpotShadowColor="@color/black"
+    android:layout_marginTop="10dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
+    android:layout_marginBottom="2dp"
+    app:cardCornerRadius="5dp"
     android:orientation="vertical">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_marginEnd="5dp"
-            android:layout_marginTop="5dp"
-            android:id="@+id/container"
-            android:layout_marginStart="5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_height="wrap_content"
-            android:elevation="2dp">
+
 
             <RelativeLayout
                 android:id="@+id/item"
@@ -34,23 +33,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
+                    android:layout_alignEnd="@id/badge_tag"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="Title"
+                    android:text="Title "
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/id_notification_body"
-                    android:layout_width="250dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/id_notification_title"
-                    android:layout_marginStart="42dp"
-                    android:layout_marginTop="-20dp"
+                    android:layout_below="@+id/id_notification_title"
                     android:layout_marginEnd="16dp"
-                    android:layout_toEndOf="@+id/id_notification_title"
+                    android:layout_marginStart="35dp"
                     android:ellipsize="end"
-                    android:gravity="center"
+                    android:gravity="left"
                     android:maxLines="5"
                     android:text="Description"
                     android:textColor="#393535"
@@ -60,12 +58,81 @@
                     android:id="@+id/id_notification_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/id_notification_title"
+                    android:layout_below="@id/id_notification_body"
                     android:layout_marginLeft="10dp"
-                    android:text="12:00 PM"
+                    android:text="Monday 12:00 PM"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/badge_tag"
+                    android:layout_width="55dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true">
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:elevation="10dp"
+                        app:cardCornerRadius="5dp"
+                        android:layout_marginTop="10dp"
+                        android:foregroundGravity="top"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="10dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/badge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/purple_200"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
+                            android:paddingBottom="5dp"
+                            android:text=" read "
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginBottom="15dp"
+                        android:backgroundTint="@color/purple_700"
+                        android:elevation="30dp"
+                        android:foregroundGravity="center"
+                        android:visibility="visible"
+                        app:cardCornerRadius="50dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/isReadId"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:src="@drawable/ic_baseline_check_24"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.cardview.widget.CardView>
+
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
             </RelativeLayout>
-        </androidx.cardview.widget.CardView>
     </RelativeLayout>
-</LinearLayout>
+</androidx.cardview.widget.CardView>

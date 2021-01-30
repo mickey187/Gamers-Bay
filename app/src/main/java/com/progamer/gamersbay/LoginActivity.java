@@ -2,13 +2,13 @@ package com.progamer.gamersbay;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.preference.PreferenceManager;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -71,19 +71,13 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-
                             FirebaseUser user = mAuth.getCurrentUser();
                             userID = user.getUid();
-
                             token_number = FirebaseInstanceId.getInstance().getToken();
-
-
                             Toast.makeText(LoginActivity.this, "Authentication successful", Toast.LENGTH_SHORT).show();
-
                             SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.putBoolean(getString(R.string.isLoggedIn),true);
+                            editor.putBoolean("isLogedIn",true);//getString(R.string.isLoggedIn)
                             editor.apply();
-
                             Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                             startActivity(intent);
                         }
@@ -111,8 +105,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
 
         PreferenceManager.getDefaultSharedPreferences(this);
-        if (sharedPreferences.getBoolean(getString(R.string.isLoggedIn),false)){
-
+        if (sharedPreferences.getBoolean("isLogedIn",false)){//getString(R.string.isLoggedIn)
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
         }
