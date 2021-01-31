@@ -24,6 +24,8 @@
         <item name="drawableTint">@color/purple_700</item>
         <item name="backgrounds">@color/white</item>
 
+        <item name="actionMenuTextColor">@color/purple_700</item>
+
 
     </style>
 
@@ -52,6 +54,15 @@
         <item name="backgroundColorForRelativeLayout">@color/colorDarkSecondary</item>
         <item name="drawableTint">@color/white</item>
         <item name="backgrounds">@color/colorDarkPrimary</item>
+
+        <item name="actionMenuTextColor">@color/white</item>
+
+
+
+
+
+
+
 
 
     </style>

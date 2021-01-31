@@ -36,6 +36,7 @@ public class JoinPubgMatch extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseUser user;
     String userID;
+    String username;
     String full_name;
     String in_game_username;
     String gaming_Id;
@@ -47,6 +48,7 @@ public class JoinPubgMatch extends AppCompatActivity {
     DocumentReference documentReference;
     DocumentReference documentReference_1;
     DocumentReference documentReference_3;
+    DocumentReference documentReference_4;
     String token_number;
 
     @Override
@@ -62,10 +64,12 @@ public class JoinPubgMatch extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
         userID = user.getUid();
+        username = user.getDisplayName();
         Intent data = getIntent();
         match_name = data.getStringExtra("match_name");
 
 
+        
 
          documentReference = firestore.collection("Users").document(userID);
         documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
@@ -94,7 +98,7 @@ public class JoinPubgMatch extends AppCompatActivity {
 
 
 
-                documentReference_3 = firestore.collection("pubg_matches").document(match_name);
+                documentReference_3 = firestore.collection("pubg_list").document(full_name).collection("matches").document(match_name);
                 documentReference_3.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {

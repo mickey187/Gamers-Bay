@@ -15,6 +15,7 @@
         <attr name="backgroundColorForRelativeLayout" format="color"/>
         <attr name="drawableTint" format="color"/>
         <attr name="backgrounds" format="color"/>
+        <attr name="actionMenuTextColor" format="color|reference"/>
 
     </declare-styleable>
 

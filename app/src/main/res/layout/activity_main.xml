@@ -38,6 +38,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:itemIconTint="@color/nav_icon_tint"
+        app:itemTextColor="?attr/textColor"
         app:menu="@menu/nav_items"
         android:background="?attr/navigationBarBackground">
 
