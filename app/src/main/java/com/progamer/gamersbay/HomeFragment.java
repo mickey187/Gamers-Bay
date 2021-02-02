@@ -115,6 +115,15 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        browse_freefire_matches.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getActivity(),FreeFireMatches.class);
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
 }

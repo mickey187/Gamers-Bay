@@ -69,7 +69,7 @@ public class JoinPubgMatch extends AppCompatActivity {
         match_name = data.getStringExtra("match_name");
 
 
-        
+
 
          documentReference = firestore.collection("Users").document(userID);
         documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {

@@ -2,7 +2,6 @@ package com.progamer.gamersbay;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.preference.PreferenceManager;
@@ -11,10 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,8 +21,6 @@ import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -35,43 +29,32 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.Map;
+public class FreeFireMatches extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener{
 
-public class PubgMatches extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
-
-    private static final String TAG = "TAG" ;
     private FirebaseFirestore firestore;
-    private RecyclerView pubg_match_list_firestore;
+    private RecyclerView free_fire_match_list_firestore;
     private FirestoreRecyclerAdapter adapter;
-    DocumentReference documentReference;
-    DocumentReference documentReference_1;
 
     String userID;
     int  balance;
     int  entry_fee;
     FirebaseAuth mAuth;
-    Boolean balance_checker;
-
+    DocumentReference documentReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setUpSharedPreferences();
-        setContentView(R.layout.activity_pubg_matches);
+        setContentView(R.layout.activity_free_fire_matches);
 
-        pubg_match_list_firestore = findViewById(R.id.pubg_match_list_recycler);
+        free_fire_match_list_firestore = findViewById(R.id.free_fire_match_list_recycler);
         firestore = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
 
         userID = user.getUid();
-
-
-
 
         documentReference = firestore.collection("Users").document(userID);
         documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
@@ -82,25 +65,23 @@ public class PubgMatches extends AppCompatActivity implements SharedPreferences.
             }
         });
 
-
-
-        Query query = firestore.collection("pubg_matches").orderBy("match_name");
-        FirestoreRecyclerOptions<PubgMatchesModel> options = new FirestoreRecyclerOptions.Builder<PubgMatchesModel>()
-                .setQuery(query, PubgMatchesModel.class)
+        Query query = firestore.collection("free_fire_matches").orderBy("match_name");
+        FirestoreRecyclerOptions<FreeFireModel> options = new FirestoreRecyclerOptions.Builder<FreeFireModel>()
+                .setQuery(query, FreeFireModel.class)
                 .build();
 
-        adapter = new FirestoreRecyclerAdapter<PubgMatchesModel, PubgViewHolder>(options) {
+        adapter = new FirestoreRecyclerAdapter<FreeFireModel, FreeFireMatches.FreeFireViewHolder>(options) {
             @NonNull
             @Override
-            public PubgViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            public FreeFireMatches.FreeFireViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.pubg_match_list,parent,false);
-                return new PubgViewHolder(view);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.free_fire_match_list,parent,false);
+                return new FreeFireViewHolder(view);
             }
 
 
             @Override
-            protected void onBindViewHolder(@NonNull PubgViewHolder holder, int position, @NonNull PubgMatchesModel model) {
+            protected void onBindViewHolder(@NonNull FreeFireMatches.FreeFireViewHolder holder, int position, @NonNull FreeFireModel model) {
 
                 holder.match_description.setText("Match Description: "+model.getMatch_description());
                 holder.game_map.setText("Map: "+model.getGame_map());
@@ -114,14 +95,14 @@ public class PubgMatches extends AppCompatActivity implements SharedPreferences.
                     @Override
                     public void onClick(View v) {
 
-                       if (balance >= model.getEntrance_fee()){
-                           Intent intent = new Intent(getApplicationContext(), JoinPubgMatch.class);
-                           intent.putExtra("match_name",model.getMatch_name());
-                           startActivity(intent);
-                       }
-                       else {
-                           Toast.makeText(PubgMatches.this, "your balance is low", Toast.LENGTH_SHORT).show();
-                       }
+                        if (balance >= model.getEntrance_fee()){
+                            Intent intent = new Intent(getApplicationContext(), JoinPubgMatch.class);
+                            intent.putExtra("match_name",model.getMatch_name());
+                            startActivity(intent);
+                        }
+                        else {
+                            Toast.makeText(FreeFireMatches.this, "your balance is low", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
 
@@ -137,15 +118,17 @@ public class PubgMatches extends AppCompatActivity implements SharedPreferences.
 
         };
 
-        pubg_match_list_firestore.setHasFixedSize(true);
-        pubg_match_list_firestore.setLayoutManager(new LinearLayoutManager(this));
-        pubg_match_list_firestore.setAdapter(adapter);
+        free_fire_match_list_firestore.setHasFixedSize(true);
+        free_fire_match_list_firestore.setLayoutManager(new LinearLayoutManager(this));
+        free_fire_match_list_firestore.setAdapter(adapter);
+
 
     }
 
 
 
-    private class PubgViewHolder extends RecyclerView.ViewHolder {
+
+    private class FreeFireViewHolder extends RecyclerView.ViewHolder {
 
         private TextView match_description;
         private TextView game_map;
@@ -162,24 +145,24 @@ public class PubgMatches extends AppCompatActivity implements SharedPreferences.
         CardView cardView;
 
 
-        public PubgViewHolder(@NonNull View itemView) {
+        public FreeFireViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            match_description = itemView.findViewById(R.id.match_description);
-            game_map = itemView.findViewById(R.id.game_map_textview);
-            match_date = itemView.findViewById(R.id.match_date);
-            reward = itemView.findViewById(R.id.match_reward);
-            match_time = itemView.findViewById(R.id.match_time);
-            type = itemView.findViewById(R.id.match_type_textview);
-            join_match = itemView.findViewById(R.id.join_match_button);
-            player_counter = itemView.findViewById(R.id.determinateBar);
-            num_of_players_joined = itemView.findViewById(R.id.num_of_players_joined);
-            entrance_fee = itemView.findViewById(R.id.entrance_fee);
-            match_number = itemView.findViewById(R.id.match_number);
-            match_status = itemView.findViewById(R.id.match_status);
-            cardView = itemView.findViewById(R.id.cardview_recycler);
+            match_description = itemView.findViewById(R.id.match_description_free_fire);
+            game_map = itemView.findViewById(R.id.game_map_textview_free_fire);
+            match_date = itemView.findViewById(R.id.match_date_free_fire);
+            reward = itemView.findViewById(R.id.match_reward_free_fire);
+            match_time = itemView.findViewById(R.id.match_time_free_fire);
+            type = itemView.findViewById(R.id.match_type_textview_free_fire);
+            join_match = itemView.findViewById(R.id.join_match_button_free_fire);
+            player_counter = itemView.findViewById(R.id.determinateBar_free_fire);
+            num_of_players_joined = itemView.findViewById(R.id.num_of_players_joined_free_fire);
+            entrance_fee = itemView.findViewById(R.id.entrance_fee_free_fire);
+            match_number = itemView.findViewById(R.id.match_number_free_fire);
+            match_status = itemView.findViewById(R.id.match_status_free_fire);
+            cardView = itemView.findViewById(R.id.cardview_recycler_free_fire_matches);
 
-            
+
 
         }
 
@@ -187,26 +170,6 @@ public class PubgMatches extends AppCompatActivity implements SharedPreferences.
 
 
     }
-
-    public void checkBalance(){
-
-         firestore.collection("pubg_matches").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-             @Override
-             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-
-                 if (task.isSuccessful()){
-
-                     for (QueryDocumentSnapshot documentSnapshot: task.getResult()){
-                         Map<String, Object> match_data = documentSnapshot.getData();
-                        // entry_fee = match_data.get("entrance_fee").toString();
-                         Toast.makeText(PubgMatches.this, entry_fee, Toast.LENGTH_SHORT).show();
-                     }
-                 }
-             }
-         });
-
-    }
-
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
