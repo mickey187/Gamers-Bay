@@ -85,9 +85,9 @@ public class FreeFireMatches extends AppCompatActivity implements SharedPreferen
 
                 holder.match_description.setText("Match Description: "+model.getMatch_description());
                 holder.game_map.setText("Map: "+model.getGame_map());
-                holder.match_date.setText(model.getMatch_date());
-                holder.reward.setText(String.valueOf(model.getReward())+" ETB");
-                holder.match_time.setText(model.getMatch_time());
+                holder.match_date.setText("Match Date: "+model.getMatch_date());
+                holder.reward.setText(String.valueOf("Reward: "+model.getReward())+" ETB");
+                holder.match_time.setText("Match Time: "+model.getMatch_time());
                 holder.type.setText("Type: "+model.getType());
                 holder.match_status.setText("Match status: "+model.getMatch_status());
                 entry_fee =   model.getEntrance_fee();
@@ -109,7 +109,7 @@ public class FreeFireMatches extends AppCompatActivity implements SharedPreferen
                 holder.num_of_players_joined.setText(String.valueOf(model.getPlayers_that_joined())+"/"+String.valueOf(model.getMaximum_number_of_players()));
                 holder.player_counter.setProgress(model.getPlayers_that_joined());
                 holder.player_counter.setMax(model.getMaximum_number_of_players());
-                holder.entrance_fee.setText(String.valueOf(model.getEntrance_fee())+" ETB");
+                holder.entrance_fee.setText(String.valueOf("Entrance Fee: "+model.getEntrance_fee())+" ETB");
                 holder.match_number.setText(model.getMatch_name());
 
 
