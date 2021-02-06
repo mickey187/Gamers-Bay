@@ -50,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
         email = findViewById(R.id.email_login_textField);
         password = findViewById(R.id.login_password_textField);
         mAuth = FirebaseAuth.getInstance();
+        firestore = FirebaseFirestore.getInstance();
 
         sharedPreferences = getSharedPreferences(MYPREFRENCES, Context.MODE_PRIVATE);
         login.setOnClickListener(new View.OnClickListener() {
@@ -73,11 +74,13 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()){
                             FirebaseUser user = mAuth.getCurrentUser();
                             userID = user.getUid();
+
                             token_number = FirebaseInstanceId.getInstance().getToken();
+
                             Toast.makeText(LoginActivity.this, "Authentication successful", Toast.LENGTH_SHORT).show();
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.putBoolean("isLogedIn",true);//getString(R.string.isLoggedIn)
-                            editor.apply();
+//                            SharedPreferences.Editor editor = sharedPreferences.edit();
+//                            editor.putBoolean("isLogedIn",true);//getString(R.string.isLoggedIn)
+//                            editor.apply();
                             Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                             startActivity(intent);
                         }
@@ -105,10 +108,10 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
 
         PreferenceManager.getDefaultSharedPreferences(this);
-        if (sharedPreferences.getBoolean("isLogedIn",false)){//getString(R.string.isLoggedIn)
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(intent);
-        }
+//        if (sharedPreferences.getBoolean("isLogedIn",false)){//getString(R.string.isLoggedIn)
+//            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+//            startActivity(intent);
+//        }
 
 
     }

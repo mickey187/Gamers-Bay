@@ -103,10 +103,10 @@ public class SignUpActivity extends AppCompatActivity {
 
 
                 final Map<String, Object> user = new HashMap<>();
-                user.put("Full name",fName);
+                user.put("Full_name",fName);
                 user.put("Email",email);
                 user.put("Balance",balance);
-                user.put("Phone number",phone_no);
+                user.put("Phone_number",phone_no);
 
 
                 mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -117,24 +117,8 @@ public class SignUpActivity extends AppCompatActivity {
 
                             FirebaseUser firebaseUser = mAuth.getCurrentUser();
                             userID = firebaseUser.getUid();
+                                user.put("ID",userID);
 
-                          /*  db.collection("Users").document(userID)
-                                    .set(user)
-                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void aVoid) {
-                                            Log.d(TAG, "DocumentSnapshot successfully written!");
-                                        }
-
-
-                                    }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.w(TAG, "Error adding document", e);
-                                }
-                            });
-
-                           */
 
                             Intent phone = new Intent(getApplicationContext(),PhoneVerification.class);
                             phone.putExtra("phone","+"+phone_number.getText().toString());

@@ -102,6 +102,7 @@ public class PubgMatches extends AppCompatActivity implements SharedPreferences.
             @Override
             protected void onBindViewHolder(@NonNull PubgViewHolder holder, int position, @NonNull PubgMatchesModel model) {
 
+
                 holder.match_description.setText("Match Description: "+model.getMatch_description());
                 holder.game_map.setText("Map: "+model.getGame_map());
                 holder.match_date.setText(model.getMatch_date());

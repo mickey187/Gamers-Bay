@@ -113,7 +113,7 @@ public class AccountFragment extends Fragment implements DialogClass.DialogClass
         documentReference.addSnapshotListener( new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
-                username.setText(documentSnapshot.getString("Full name"));
+                username.setText(documentSnapshot.getString("Full_name"));
                 email.setText(documentSnapshot.getString("Email"));
                 balance.setText(String.valueOf(documentSnapshot.getLong("Balance")) + " ETB");
 //                phone_number.setText("Phone number: "+documentSnapshot.getString("Phone number"));
@@ -141,11 +141,11 @@ public class AccountFragment extends Fragment implements DialogClass.DialogClass
             public void onClick(View v) {
 
                 mAuth.signOut();
-                sharedPreferences = getActivity().getSharedPreferences(MYPREFRENCES, Context.MODE_PRIVATE);
-                PreferenceManager.getDefaultSharedPreferences(getActivity());
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.clear();
-                editor.apply();
+//                sharedPreferences = getActivity().getSharedPreferences(MYPREFRENCES, Context.MODE_PRIVATE);
+//                PreferenceManager.getDefaultSharedPreferences(getActivity());
+//                SharedPreferences.Editor editor = sharedPreferences.edit();
+//                editor.clear();
+//                editor.apply();
 
                 Intent intent = new Intent(getActivity(),LoginActivity.class);
                 startActivity(intent);
